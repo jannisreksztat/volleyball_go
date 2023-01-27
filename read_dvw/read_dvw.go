@@ -7,9 +7,9 @@ import (
 	"strings"
 )
 
-func ReadDVW(dataName string) (string, string) {
-	var generalData string
-	var gameData string
+func ReadDVW(dataName string) ([]string, [][]string) {
+	var generalData []string
+	var attackData []string
 
 	data, err := os.Open(dataName)
 
@@ -18,12 +18,17 @@ func ReadDVW(dataName string) (string, string) {
 	}
 	scanner := bufio.NewScanner(data)
 
-	scanner.Split(SplitGame)
+	var DataType bool = false
 	for scanner.Scan() {
-		if generalData == "" {
-			generalData = scanner.Text()
-		} else {
-			gameData = scanner.Text()
+		switch DataType {
+		case false:
+			generalData = append(generalData, scanner.Text())
+
+		case true:
+			attackData = append(attackData, scanner.Text())
+		}
+		if scanner.Text() == "[3SCOUT]" {
+			DataType = true
 		}
 	}
 
@@ -31,26 +36,15 @@ func ReadDVW(dataName string) (string, string) {
 		log.Fatal(err)
 	}
 	defer data.Close()
-
-	gameData = strings.ReplaceAll(gameData, ";", ",")
-
-	return generalData, gameData
+	return generalData, createMatrix(attackData)
 }
 
-func SplitGame(data []byte, atEOF bool) (advance int, token []byte, err error) {
-	// Return nothing if at end of file and no data passed
-	if atEOF && len(data) == 0 {
-		return 0, nil, nil
+func createMatrix(dataString []string) [][]string {
+	var matrix [][]string
+
+	for _, content := range dataString {
+		matrix = append(matrix, strings.Split(content, ";"))
 	}
 
-	// Find the index of 3Scout to split
-	if i := strings.Index(string(data), "[3SCOUT]"); i >= 0 {
-		return i + 8, data[0:(i + 8)], nil
-	}
-
-	// If at end of file with data return the data
-	if atEOF {
-		return len(data), data, nil
-	}
-	return
+	return matrix
 }
