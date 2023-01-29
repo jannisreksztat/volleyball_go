@@ -41,12 +41,12 @@ func ReadDVW(dataName string) ([]string, [][]string) {
 
 func CreateMatrix(dataString []string) [][]string {
 	var matrix [][]string
-	header := []string{"Team", "Player", "Skill", "Type", "Rating", "undefined", "undefined",
-		"Start zone", "End zone", "undefined", "End zone +", "undefined", "undefined", "undefined",
-		"undefined", "undefined", "undefined", "Time", "undefined", "undefined", "undefined",
-		"undefined", "undefined", "undefined", "Aufstellung 1", "Aufstellung 2", "Aufstellung 3",
-		"Aufstellung 4", "Aufstellung 5", "Aufstellung 6", "Aufstellung 7", "Aufstellung 8",
-		"Aufstellung 9", "Aufstellung 10", "Aufstellung 11", "Aufstellung 12",
+	header := []string{"Team", "Player", "Skill", "Type", "Rating", "Cmb", "Targ Attack",
+		"Start zone", "End zone", "End zone +", "Skill type+", "Players+", "Special", "undefined",
+		"undefined", "undefined", "undefined", "undefined", "undefined", "Time", "undefined",
+		"undefined", "undefined", "undefined", "undefined", "undefined", "Aufstellung 1", "Aufstellung 2",
+		"Aufstellung 3", "Aufstellung 4", "Aufstellung 5", "Aufstellung 6", "Aufstellung 7",
+		"Aufstellung 8", "Aufstellung 9", "Aufstellung 10", "Aufstellung 11", "Aufstellung 12",
 	}
 
 	matrix = append(matrix, header)
@@ -72,15 +72,14 @@ func SpecifyAttack(input string) []string {
 	var output []string
 
 	oldPos := 0
-	positionSplit := []int{1, 3, 4, 5, 6, 8, 9, 10, 11, 12}
+	positionSplit := []int{1, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}
 	for _, content := range positionSplit {
-		if content < len(input) {
+		if (content - 1) < len(input) {
 			output = append(output, input[oldPos:content])
 			oldPos = content
 		} else {
 			output = append(output, " ")
 		}
 	}
-	output = append(output, input[oldPos:])
 	return output
 }
