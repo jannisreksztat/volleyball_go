@@ -27,6 +27,7 @@ func main() {
 	//Returns rows
 	// df.Subset()
 	df = dvw.DeleteEmpty(df, "undefined")
+	df = dvw.DeleteRows(df)
+	// fmt.Println("Inhalt:   ", dvw.GetData(df, "Player", 10), "\nIst Digit:   ", dvw.CheckIf(dvw.GetData(df, "Player", 10)))
 	dvw.CreateCSV(df, "volleyball.csv")
-
 }
