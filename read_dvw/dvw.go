@@ -3,9 +3,9 @@ package dvw
 import "github.com/go-gota/gota/dataframe"
 
 type DVW struct {
-	FileName      string
-	GeneralData   []string
 	GameDataFrame dataframe.DataFrame
+	GeneralData   []string
+	FileName      string
 
 	header   []string
 	gameData [][]string
@@ -14,13 +14,13 @@ type DVW struct {
 func NewDVW(filename string) *DVW {
 	dvw := new(DVW)
 	dvw.FileName = filename
-	dvw.FileName = "example_data/5004_Hin01_Karlsruhe_Delitzsch.dvw"
 	dvw.DeclareHeader()
 	dvw.ReadDVW()
+	dvw.GameDataFrame = dataframe.LoadRecords(dvw.gameData)
 	return dvw
 }
 
-func (dvw DVW) DeclareHeader() {
+func (dvw *DVW) DeclareHeader() {
 	dvw.header = []string{
 		"Team", "Player", "Skill", "Type", "Rating", "Cmb", "Targ Attack",
 		"Start zone", "End zone", "End zone +", "Skill type+", "Players+", "Special", "undefined",

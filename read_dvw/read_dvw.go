@@ -2,13 +2,12 @@ package dvw
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strings"
 )
 
-func (dvw DVW) ReadDVW() {
+func (dvw *DVW) ReadDVW() {
 	var attackData []string
 
 	data, err := os.Open(dvw.FileName)
@@ -37,11 +36,10 @@ func (dvw DVW) ReadDVW() {
 	}
 	defer data.Close()
 	dvw.CreateMatrix(attackData)
-	fmt.Println(dvw.GameDataFrame)
 	return
 }
 
-func (dvw DVW) CreateMatrix(dataString []string) {
+func (dvw *DVW) CreateMatrix(dataString []string) {
 	dvw.gameData = append(dvw.gameData, dvw.header)
 	for _, content := range dataString {
 		dvw.gameData = append(dvw.gameData, SplitContent(content, ";"))
