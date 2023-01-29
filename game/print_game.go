@@ -5,10 +5,10 @@ import (
 	"os"
 )
 
-func (game Game) CreateCSV(filename string) {
-	f, err := os.Create(filename)
+func (game *Game) CreateCSV() {
+	filename, err := os.Create("volleyball.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
-	game.GameData.WriteCSV(f)
+	game.FilteredData.WriteCSV(filename)
 }

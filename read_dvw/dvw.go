@@ -17,6 +17,9 @@ func NewDVW(filename string) *DVW {
 	dvw.DeclareHeader()
 	dvw.ReadDVW()
 	dvw.GameDataFrame = dataframe.LoadRecords(dvw.gameData)
+
+	dvw.GameDataFrame = DeleteColumns(dvw.GameDataFrame, "undefined")
+	dvw.GameDataFrame = DeleteRows(dvw.GameDataFrame)
 	return dvw
 }
 

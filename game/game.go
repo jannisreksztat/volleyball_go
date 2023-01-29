@@ -1,7 +1,6 @@
 package game
 
 import (
-	"fmt"
 	dvw "volleyball_go/read_dvw"
 
 	"github.com/go-gota/gota/dataframe"
@@ -19,16 +18,5 @@ func NewGame(filename string) *Game {
 	game.GameData = dvw.GameDataFrame
 	game.GeneralData = dvw.GeneralData
 	game.FilteredData = game.GameData
-	fmt.Println(game.GameData)
 	return game
 }
-
-// func (game Game) FilterPlayer(value string) {
-// 	game.FilteredData = game.FilteredData.Filter(
-// 		dataframe.F{
-// 			Colname:    "Player",
-// 			Comparator: series.Eq,
-// 			Comparando: value,
-// 		},
-// 	)
-// }
