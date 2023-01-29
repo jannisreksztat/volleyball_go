@@ -1,16 +1,14 @@
 package main
 
 import (
-	game "volleyball_go/game"
-	dvw "volleyball_go/read_dvw"
+	"fmt"
+	"volleyball_go/game"
 )
 
 func main() {
-	spiel := game.NewGame("example_data/5004_Hin01_Karlsruhe_Delitzsch.dvw")
-	// spiel.FilterPlayer("5")
-	dvw.CreateCSV(spiel.FilteredData, "volleyball.csv")
-	// df = dvw.DeleteEmpty(df, "undefined")
-	// df = dvw.DeleteRows(df)
-	// df = dvw.FilterTeam(df, "a")
-
+	data := game.NewGame("example_data/5004_Hin01_Karlsruhe_Delitzsch.dvw")
+	data.FilterTeamPlayer("a", "15")
+	data.FilterSkill("A")
+	fmt.Println(data.FilteredData)
+	data.CreateCSV()
 }

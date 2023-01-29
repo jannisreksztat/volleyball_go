@@ -7,11 +7,10 @@ import (
 	"strings"
 )
 
-func ReadDVW(dataName string) ([]string, [][]string) {
-	var generalData []string
+func (dvw *DVW) ReadDVW() {
 	var attackData []string
 
-	data, err := os.Open(dataName)
+	data, err := os.Open(dvw.FileName)
 
 	if err != nil {
 		log.Fatal(err)
@@ -22,7 +21,7 @@ func ReadDVW(dataName string) ([]string, [][]string) {
 	for scanner.Scan() {
 		switch DataType {
 		case false:
-			generalData = append(generalData, scanner.Text())
+			dvw.GeneralData = append(dvw.GeneralData, scanner.Text())
 
 		case true:
 			attackData = append(attackData, scanner.Text())
@@ -36,25 +35,15 @@ func ReadDVW(dataName string) ([]string, [][]string) {
 		log.Fatal(err)
 	}
 	defer data.Close()
-	return generalData, CreateMatrix(attackData)
+	dvw.CreateMatrix(attackData)
+	return
 }
 
-func CreateMatrix(dataString []string) [][]string {
-	var matrix [][]string
-	header := []string{"Team", "Player", "Skill", "Type", "Rating", "Cmb", "Targ Attack",
-		"Start zone", "End zone", "End zone +", "Skill type+", "Players+", "Special", "undefined",
-		"undefined", "undefined", "undefined", "undefined", "undefined", "Time", "undefined",
-		"undefined", "undefined", "undefined", "undefined", "undefined", "Aufstellung 1", "Aufstellung 2",
-		"Aufstellung 3", "Aufstellung 4", "Aufstellung 5", "Aufstellung 6", "Aufstellung 7",
-		"Aufstellung 8", "Aufstellung 9", "Aufstellung 10", "Aufstellung 11", "Aufstellung 12",
-	}
-
-	matrix = append(matrix, header)
+func (dvw *DVW) CreateMatrix(dataString []string) {
+	dvw.gameData = append(dvw.gameData, dvw.header)
 	for _, content := range dataString {
-		matrix = append(matrix, SplitContent(content, ";"))
+		dvw.gameData = append(dvw.gameData, SplitContent(content, ";"))
 	}
-
-	return matrix
 }
 
 func SplitContent(input string, delimiter string) []string {

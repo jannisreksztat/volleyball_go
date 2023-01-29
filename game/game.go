@@ -7,26 +7,16 @@ import (
 )
 
 type Game struct {
-	GeneralData  []string
 	GameData     dataframe.DataFrame
+	GeneralData  []string
 	FilteredData dataframe.DataFrame
 }
 
 func NewGame(filename string) *Game {
 	game := new(Game)
-	var data [][]string
-	game.GeneralData, data = dvw.ReadDVW(filename)
-	game.GameData = dataframe.LoadRecords(data)
+	dvw := dvw.NewDVW(filename)
+	game.GameData = dvw.GameDataFrame
+	game.GeneralData = dvw.GeneralData
 	game.FilteredData = game.GameData
 	return game
 }
-
-// func (game Game) FilterPlayer(value string) {
-// 	game.FilteredData = game.FilteredData.Filter(
-// 		dataframe.F{
-// 			Colname:    "Player",
-// 			Comparator: series.Eq,
-// 			Comparando: value,
-// 		},
-// 	)
-// }
