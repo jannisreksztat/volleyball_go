@@ -7,10 +7,6 @@ import (
 	"github.com/go-gota/gota/dataframe"
 )
 
-// func analyse_dvw() {
-
-// }
-
 func DeleteEmpty(input dataframe.DataFrame, prefix string) dataframe.DataFrame {
 	var keepStrings []string
 	for _, col := range input.Names() {
