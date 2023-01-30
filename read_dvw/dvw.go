@@ -27,10 +27,10 @@ func (dvw *DVW) DeclareHeader() {
 	dvw.header = []string{
 		"Team", "Player", "Skill", "Type", "Rating", "Cmb", "Targ Attack",
 		"Start zone", "End zone", "End zone +", "Skill type+", "Players+", "Special", "undefined",
-		"undefined", "undefined", "undefined", "undefined", "undefined", "Time", "undefined",
-		"undefined", "undefined", "undefined", "undefined", "undefined", "Aufstellung 1", "Aufstellung 2",
-		"Aufstellung 3", "Aufstellung 4", "Aufstellung 5", "Aufstellung 6", "Aufstellung 7",
-		"Aufstellung 8", "Aufstellung 9", "Aufstellung 10", "Aufstellung 11", "Aufstellung 12",
+		"undefined", "undefined", "undefined", "undefined", "undefined", "Real Time", "Set",
+		"P Feeder Home", "P Feeder Away", "VideoNr", "Timestamp Video", "undefined", "Home 1", "Home 2",
+		"Home 3", "Home 4", "Home 5", "Home 6", "Away 1",
+		"Away 2", "Away 3", "Away 4", "Away 5", "Away 6",
 	}
 	return
 }
