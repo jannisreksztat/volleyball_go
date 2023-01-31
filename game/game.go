@@ -15,8 +15,10 @@ type Game struct {
 func NewGame(filename string) *Game {
 	game := new(Game)
 	dvw := dvw.NewDVW(filename)
+
 	game.GameData = dvw.GameDataFrame
 	game.GeneralData = dvw.GeneralData
 	game.FilteredData = game.GameData
+
 	return game
 }

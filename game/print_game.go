@@ -3,10 +3,12 @@ package game
 import (
 	"log"
 	"os"
+	"path/filepath"
 )
 
-func (game *Game) CreateCSV() {
-	filename, err := os.Create("volleyball.csv")
+func (game *Game) CreateCSV(path string) {
+	path = filepath.Join(path, "volleyball.csv")
+	filename, err := os.Create(path)
 	if err != nil {
 		log.Fatal(err)
 	}
