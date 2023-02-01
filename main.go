@@ -13,5 +13,5 @@ func main() {
 	data.FilterSkill("A")
 	// fmt.Println(data.FilteredData)
 	data.CreateCSV(outputDir)
-	data.DrawMatch(3, "*", false, outputDir)
+	data.DrawMatch(3, outputDir)
 }

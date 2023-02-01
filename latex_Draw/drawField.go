@@ -15,7 +15,7 @@ var mainField = [][]int{
 	{1, 6, 5},
 }
 
-func createFields(size float32, team string, direction bool) []field {
+func createFields(size float32, direction bool) []field {
 	var fields []field
 	for row, rowCon := range mainField {
 		for column, colCon := range rowCon {

@@ -5,8 +5,8 @@ import (
 	latexDraw "volleyball_go/latex_Draw"
 )
 
-func (game *Game) DrawMatch(size float32, attackTeam string, direction bool, directory string) {
-	latexDraw.DrawLatex(size, attackTeam, direction, directory, game.createVectors())
+func (game *Game) DrawMatch(size float32, directory string) {
+	latexDraw.DrawLatex(size, directory, game.createVectors())
 }
 
 func (game *Game) createVectors() []latexDraw.Vector {
