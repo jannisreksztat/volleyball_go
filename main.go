@@ -13,5 +13,5 @@ func main() {
 	// data.FilterSkill("A")
 	// fmt.Println(data.FilteredData)
 	// data.CreateCSV(outputDir)
-	latexDraw.DrawTemplate(3, "*", false, outputDir)
+	latexDraw.DrawTemplate(5, "*", true, outputDir)
 }

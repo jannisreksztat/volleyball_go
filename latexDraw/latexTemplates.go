@@ -9,8 +9,13 @@ const volley_template = `
 
 {{.TikzTemplate}}
 
+\draw[fieldLine] (-{{.FeldLinie}}/1.9,0) -- ({{.FeldLinie}}/1.9,0);
 {{range .VolleyField}}
 \node[field={{.Size}}] ({{.Name}}) at ({{.XPos}},{{.YPos}}) { {{.Name}} };
+{{end}}
+
+{{range .Aktion}}
+\draw[ass arrow] ({{.Startwert}}.center) -- ({{.Endwert}}.center) node [midway, right] { \{{.Name}} };
 {{end}}
 
 \end{tikzpicture}
@@ -23,12 +28,16 @@ const tikz_template = `
         draw,
         minimum width = #1*1cm, 
         minimum height = #1*1cm, 
-        line width = 0.5mm
+        line width = 0.2mm,
     },
     ass arrow/.style={
         ->,
         red,
-        line width = 0.5mm
+        line width = 0.4mm,
+    },
+    fieldLine/.style={
+        black,
+        line width = 0.5mm,
     },
 }
 `

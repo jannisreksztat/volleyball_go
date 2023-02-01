@@ -9,9 +9,16 @@ import (
 
 type volley struct {
 	TikzTemplate string
+	FeldLinie    float32
 	VolleyField  []field
+	Aktion       []arrow
 }
 
+type arrow struct {
+	Startwert string
+	Endwert   string
+	Name      string
+}
 type field struct {
 	Size float32
 	Name string
@@ -20,16 +27,19 @@ type field struct {
 }
 
 func DrawTemplate(size float32, attackTeam string, direction bool, directory string) {
-	// feld := []field{
-	// 	{size, "*", ypos},
-	// 	{size, "a", -ypos},
-	// }
 
 	feld := createFields(size, attackTeam, direction)
-	fmt.Println(feld)
+	feld = append(feld, createFields(size, "", !direction)...)
+
+	arrows := []arrow{
+		{"2", "*4", "#"},
+	}
+
 	data := volley{
 		tikz_template,
+		size,
 		feld,
+		arrows,
 	}
 
 	tmpl, err := template.New("volley").Parse(volley_template)
@@ -55,10 +65,6 @@ func DrawTemplate(size float32, attackTeam string, direction bool, directory str
 	}
 }
 
-// var names = []string{
-// 	"A", "B", "C", "D",
-// }
-
 var pos = [][]int{
 	{2, 3, 4},
 	{9, 8, 7},
@@ -69,15 +75,18 @@ func createFields(size float32, team string, direction bool) []field {
 	var fields []field
 	for row, rowCon := range pos {
 		for column, colCon := range rowCon {
-			// fmt.Println("Row: ", float32(row), "Column: ", float32(column))
-			fmt.Println((size * (float32(column) - 1) * 1 / 3))
 			name := team + fmt.Sprint(colCon)
 			if direction {
-				fields = append(fields, field{size / 3, name,
-					(size * (float32(column) - 1) * 1 / 3), (size * float32(row) * 1 / 3)})
+				fields = append(fields,
+					field{size / 3, name,
+						(size / 3 * (float32(column) - 1)),
+						(size/3*float32(row) + size/6)})
 			} else {
-				fields = append(fields, field{size / 3, name,
-					1 / 3 * size * (float32(-column) - 1), 1 / 3 * size * float32(-row)})
+				fields = append(fields,
+					field{size / 3,
+						name,
+						(size * (float32(column) - 1) * -1 / 3),
+						(-size*float32(row)/3 - size/6)})
 			}
 		}
 	}
