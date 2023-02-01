@@ -7,7 +7,11 @@ import (
 )
 
 func GetData(df dataframe.DataFrame, column string, row int) string {
-	return df.Col(column).Elem(row).String()
+	if df.Col(column).Elem(row).String() == " " {
+		return ""
+	} else {
+		return df.Col(column).Elem(row).String()
+	}
 }
 
 func CheckString(input string) bool {
