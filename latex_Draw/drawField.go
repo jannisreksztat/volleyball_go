@@ -25,7 +25,7 @@ func createFields(size float32, direction bool, attackTeam string) []field {
 					field{size,
 						name,
 						(size * (float32(column) - 1)),
-						(size * (float32(row) + size/2)),
+						(size*(float32(row)) + size/2),
 					})
 				fields = append(fields, createSubfields(size, size*(float32(column)-1), size*float32(row)+size/2, name)...)
 			} else {

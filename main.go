@@ -12,6 +12,6 @@ func main() {
 	data.FilterTeamPlayer("a", "15")
 	// data.FilterSkill("A")
 	// fmt.Println(data.FilteredData)
-	data.CreateCSV(outputDir)
-	data.DrawMatch(3, "a", outputDir)
+	// data.CreateCSV(outputDir)
+	data.DrawMatch(8, "a", outputDir)
 }
