@@ -11,7 +11,7 @@ const volley_template = `
 
 \draw[fieldLine] (-{{.FeldLinie}}/1.9,0) -- ({{.FeldLinie}}/1.9,0);
 {{range .VolleyField}}
-\node[field={{.Size}}] ({{.Name}}) at ({{.XPos}},{{.YPos}}) { {{.Name}} };
+\node[mainField={{.Size}}] ({{.Name}}) at ({{.XPos}},{{.YPos}}) {};
 {{end}}
 
 {{range .Aktion}}
@@ -23,7 +23,7 @@ const volley_template = `
 `
 const tikz_template = `
 \tikzset{
-    field/.style ={
+    mainField/.style ={
         rectangle,
         draw,
         minimum width = #1*1cm, 

@@ -21,10 +21,10 @@ type Vector struct {
 	Rating    string
 }
 
-func DrawLatex(size float32, directory string, vectors []Vector) {
+func DrawLatex(size float32, directory string, vectors []Vector, attackTeam string) {
 
-	feld := createFields(size, true)
-	feld = append(feld, createFields(size, false)...)
+	feld := createFields(size, true, attackTeam)
+	feld = append(feld, createFields(size, false, "")...)
 
 	data := volley{
 		tikz_template,
