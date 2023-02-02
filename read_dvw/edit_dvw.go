@@ -3,26 +3,24 @@ package dvw
 import (
 	"strings"
 	dataFunction "volleyball_go/data_functions"
-
-	"github.com/go-gota/gota/dataframe"
 )
 
-func DeleteColumns(input dataframe.DataFrame, prefix string) dataframe.DataFrame {
+func (dvw *DVW) deleteColumns(prefix string) {
 	var keepStrings []string
-	for _, col := range input.Names() {
+	for _, col := range dvw.GameDataFrame.Names() {
 		if !strings.HasPrefix(col, prefix) {
 			keepStrings = append(keepStrings, col)
 		}
 	}
-	return input.Select(keepStrings)
+	dvw.GameDataFrame.Select(keepStrings)
 }
 
-func DeleteRows(input dataframe.DataFrame) dataframe.DataFrame {
+func (dvw *DVW) deleteRows() {
 	var keepRows []int
-	for row := 0; row < input.Nrow(); row++ {
-		if dataFunction.CheckString(dataFunction.GetData(input, "Player", row)) {
+	for row := 0; row < dvw.GameDataFrame.Nrow(); row++ {
+		if dataFunction.CheckString(dataFunction.GetData(dvw.GameDataFrame, "Player", row)) {
 			keepRows = append(keepRows, row)
 		}
 	}
-	return input.Subset(keepRows)
+	dvw.GameDataFrame.Subset(keepRows)
 }

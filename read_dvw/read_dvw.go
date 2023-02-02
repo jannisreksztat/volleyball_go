@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func (dvw *DVW) ReadDVW() {
+func (dvw *DVW) readDVW() {
 	var attackData []string
 
 	data, err := os.Open(dvw.FileName)
@@ -35,20 +35,20 @@ func (dvw *DVW) ReadDVW() {
 		log.Fatal(err)
 	}
 	defer data.Close()
-	dvw.CreateMatrix(attackData)
+	dvw.createMatrix(attackData)
 	return
 }
 
-func (dvw *DVW) CreateMatrix(dataString []string) {
+func (dvw *DVW) createMatrix(dataString []string) {
 	dvw.gameData = append(dvw.gameData, dvw.header)
 	for _, content := range dataString {
-		dvw.gameData = append(dvw.gameData, SplitContent(content, ";"))
+		dvw.gameData = append(dvw.gameData, splitContent(content, ";"))
 	}
 }
 
-func SplitContent(input string, delimiter string) []string {
+func splitContent(input string, delimiter string) []string {
 	splitString := strings.Split(input, ";")
-	output := SpecifyAttack(splitString[0])
+	output := specifyAttack(splitString[0])
 
 	for _, content := range splitString[1:] {
 		output = append(output, content)
@@ -56,7 +56,7 @@ func SplitContent(input string, delimiter string) []string {
 	return output
 }
 
-func SpecifyAttack(input string) []string {
+func specifyAttack(input string) []string {
 	input = strings.ReplaceAll(input, "~", " ")
 	var output []string
 
