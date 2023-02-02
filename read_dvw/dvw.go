@@ -14,16 +14,16 @@ type DVW struct {
 func NewDVW(filename string) *DVW {
 	dvw := new(DVW)
 	dvw.FileName = filename
-	dvw.DeclareHeader()
-	dvw.ReadDVW()
+	dvw.declareHeader()
+	dvw.readDVW()
 	dvw.GameDataFrame = dataframe.LoadRecords(dvw.gameData)
 
-	dvw.GameDataFrame = DeleteColumns(dvw.GameDataFrame, "undefined")
-	dvw.GameDataFrame = DeleteRows(dvw.GameDataFrame)
+	dvw.deleteColumns("undefined")
+	dvw.deleteRows()
 	return dvw
 }
 
-func (dvw *DVW) DeclareHeader() {
+func (dvw *DVW) declareHeader() {
 	dvw.header = []string{
 		"Team", "Player", "Skill", "Type", "Rating", "Cmb", "Targ Attack",
 		"Start zone", "End zone", "End zone +", "Skill type+", "Players+", "Special", "undefined",
