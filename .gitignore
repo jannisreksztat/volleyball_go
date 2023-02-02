@@ -1,5 +1,2 @@
 example_data/
-go.mod
-go.sum
-**/*.csv
 Output/

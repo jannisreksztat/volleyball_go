@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func Directory() string {
+func CreateDirectory() string {
 	cwd, _ := os.Getwd()
 	cwd = filepath.Join(cwd, "Output")
 
