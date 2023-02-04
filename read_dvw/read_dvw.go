@@ -47,7 +47,7 @@ func (dvw *DVW) createMatrix(dataString []string) {
 }
 
 func splitContent(input string, delimiter string) []string {
-	splitString := strings.Split(input, ";")
+	splitString := strings.Split(input, delimiter)
 	output := specifyAttack(splitString[0])
 
 	for _, content := range splitString[1:] {
