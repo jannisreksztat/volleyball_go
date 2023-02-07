@@ -1,4 +1,4 @@
-package latexDraw
+package fieldVector
 
 const volley_template = `
 \documentclass{article}
@@ -6,22 +6,6 @@ const volley_template = `
 \begin{document}
 
 \begin{tikzpicture}
-
-{{.TikzTemplate}}
-
-\draw[fieldLine] (-{{.FeldLinie}}/1.9,0) -- ({{.FeldLinie}}/1.9,0);
-{{range .VolleyField}}
-\node[mainField={{.Size}}] ({{.Name}}) at ({{.XPos}},{{.YPos}}) {};
-{{end}}
-
-{{range .Aktion}}
-\draw[ass arrow] ({{.Startzone}}.center) -- ({{.Endzone}}.center) node [midway, right] { };
-{{end}}
-
-\end{tikzpicture}
-\end{document}
-`
-const tikz_template = `
 \tikzset{
     mainField/.style ={
         rectangle,
@@ -40,4 +24,16 @@ const tikz_template = `
         line width = 0.5mm,
     },
 }
+
+\draw[fieldLine] (-{{.FeldSize}}/1.9,0) -- ({{.FeldSize}}/1.9,0);
+{{range .VolleyField}}
+\node[mainField={{.Size}}] ({{.Name}}) at ({{.XPos}},{{.YPos}}) {};
+{{end}}
+
+{{range .Aktion}}
+\draw[ass arrow] ({{.Startzone}}.center) -- ({{.Endzone}}.center) node [midway, right] { };
+{{end}}
+
+\end{tikzpicture}
+\end{document}
 `
