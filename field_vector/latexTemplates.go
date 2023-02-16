@@ -31,7 +31,7 @@ const volley_template = `
 {{end}}
 
 {{range .Aktion}}
-\draw[ass arrow] ({{.Startzone}}.center) -- ({{.Endzone}}.center) node [midway, right] { };
+\draw[ass arrow] ({{.Startzone}}.center) -- ({{.Endzone}}.center) node [near end, right] { {{.Rating}} };
 {{end}}
 
 \end{tikzpicture}
