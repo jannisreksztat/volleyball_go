@@ -11,6 +11,7 @@ type DVW struct {
 	gameData [][]string
 }
 
+//hier io.reader als übergabe
 func NewDVW(filename string) *DVW {
 	dvw := new(DVW)
 	dvw.FileName = filename
