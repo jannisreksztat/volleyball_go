@@ -7,15 +7,9 @@ import (
 	"strings"
 )
 
-func (dvw *DVW) readDVW() {
+func (dvw *DVW) readDVW(data *os.File) {
 	var attackData []string
 
-	data, err := os.Open(dvw.FileName) //file öffnen exportieren
-
-	if err != nil {
-		log.Fatal(err)
-	}									
-	defer data.Close()
 	scanner := bufio.NewScanner(data)
 
 	var DataType bool = false
