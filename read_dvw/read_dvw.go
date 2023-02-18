@@ -10,11 +10,12 @@ import (
 func (dvw *DVW) readDVW() {
 	var attackData []string
 
-	data, err := os.Open(dvw.FileName)
+	data, err := os.Open(dvw.FileName) //file öffnen exportieren
 
 	if err != nil {
 		log.Fatal(err)
-	}
+	}									
+	defer data.Close()
 	scanner := bufio.NewScanner(data)
 
 	var DataType bool = false
@@ -34,7 +35,6 @@ func (dvw *DVW) readDVW() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	defer data.Close()
 	dvw.createMatrix(attackData)
 	return
 }
