@@ -1,7 +1,7 @@
 package game
 
 import (
-	reader "volleyball_go/fileReader"
+	reader "volleyball_go/game/fileReader"
 
 	"github.com/go-gota/gota/dataframe"
 )

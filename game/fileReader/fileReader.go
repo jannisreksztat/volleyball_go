@@ -3,7 +3,7 @@ package fileReader
 import (
 	"log"
 	"os"
-	dvw "volleyball_go/createDataframe"
+	dvw "volleyball_go/game/fileReader/createDataframe"
 )
 
 func ReadDVWFile(filename string) *dvw.DVW {

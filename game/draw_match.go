@@ -1,10 +1,10 @@
 package game
 
 import (
-	fieldVector "volleyball_go/field_vector"
+	createOutput "volleyball_go/game/createOutput"
 )
 
 func (game *Game) DrawMatch(size float32, attackTeam string, directory string) {
-	volley := fieldVector.NewVolley(game.FilteredData, size, attackTeam)
-	volley.CreateTex(directory)
+	output := createOutput.NewOutput(game.FilteredData, size, attackTeam)
+	output.CreateTex(directory)
 }

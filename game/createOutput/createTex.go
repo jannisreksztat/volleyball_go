@@ -1,4 +1,4 @@
-package fieldVector
+package createOutput
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-func (volley *Volley) CreateTex(directory string) {
+func (output *Output) CreateTex(directory string) {
 
 	tmpl, err := template.New("volley").Parse(volley_template)
 	if err != nil {
@@ -26,7 +26,7 @@ func (volley *Volley) CreateTex(directory string) {
 
 	defer f.Close()
 
-	err = tmpl.Execute(f, volley)
+	err = tmpl.Execute(f, output.volley)
 	if err != nil {
 		panic(err)
 	}
