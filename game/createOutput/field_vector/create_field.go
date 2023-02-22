@@ -6,18 +6,20 @@ func (volley *Volley) createFields(attackTeam string) {
 	for row, rowCon := range mainField {
 		for column, colCon := range rowCon {
 			name := attackTeam + colCon
+			xpos := (size * (float64(column) - 1.5))
+			ypos := (size*(float64(row)) + size/2)
 			volley.VolleyField = append(volley.VolleyField,
 				field{size,
 					name,
-					(size * (float64(column) - 1)),
-					(size*(float64(row)) + size/2),
+					xpos,
+					ypos,
 				})
 
-			volley.createSubfields(size*(float64(column)-1), size*float64(row)+size/2, name)
+			volley.createSubfields(xpos, ypos, name)
 			volley.VolleyField = append(volley.VolleyField,
 				field{size,
 					colCon,
-					(size * (float64(column) - 1) * -1),
+					(size * (float64(column) - 0.5) * -1),
 					(-size*float64(row) - size/2),
 				})
 

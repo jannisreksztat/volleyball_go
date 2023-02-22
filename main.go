@@ -10,11 +10,11 @@ func main() {
 	outputDir := dataFunction.CreateDirectory()
 
 	data := game.NewGame("example_data/example_data.dvw")
-	data.FilterTeamPlayer("a", "15")
-	// data.FilterSkill("A")
+	data.FilterTeamPlayer("a", "11")
+	data.FilterSkill("A")
 	// fmt.Println(data.FilteredData)
 	// data.CreateCSV(outputDir)
 	data.DrawMatch(8, "a", outputDir)
-	output := createOutput.NewOutput(data.FilteredData, 3, "a")
+	output := createOutput.NewOutput(data.FilteredData, 50, "a")
 	output.CreatePDF(outputDir)
 }

@@ -12,7 +12,7 @@ import (
 func (output *Output) CreatePDF(directory string) {
 	var pdfWidth float64 = 210
 	var pdfHeight float64 = 297
-	var scale float64 = 25
+	var scale float64 = 1
 
 	directory = filepath.Join(directory, "volley.pdf")
 	f, err := os.Create(directory)
@@ -40,7 +40,10 @@ func (output *Output) createField(pdfWidth float64, pdfHeight float64, scale flo
 	output.context.DrawPath(0, 0, canvas.Rectangle(output.width, output.height))
 
 	for i := 0; i < len(feld); i++ {
-		output.context.DrawPath(feld[i].XPos*scale+pdfWidth/2, feld[i].YPos*scale+pdfHeight/2, canvas.Rectangle(feld[i].Size*scale, feld[i].Size*scale))
+		output.context.DrawPath(feld[i].XPos*scale+pdfWidth/2,
+			feld[i].YPos*scale+pdfHeight/2,
+			canvas.Rectangle(feld[i].Size*scale,
+				feld[i].Size*scale))
 	}
 }
 
@@ -72,6 +75,10 @@ func (output *Output) drawArrow(x1, y1, x2, y2 float64) {
 	output.context.SetStrokeColor(canvas.Red)
 	var angle float64 = math.Atan((y2 - y1) / (x2 - x1))
 
+	if x2 < x1 {
+		angle = angle + math.Pi
+	}
+
 	var newX1 float64 = x2 + 5*math.Cos(angle+degreeToRadian(150))
 	var newY1 float64 = y2 + 5*math.Sin(angle+degreeToRadian(150))
 	var newX2 float64 = x2 + 5*math.Cos(angle-degreeToRadian(150))
@@ -87,4 +94,8 @@ func (output *Output) drawArrow(x1, y1, x2, y2 float64) {
 
 func degreeToRadian(degree float64) float64 {
 	return math.Pi / 180 * degree
+}
+
+func radianToDegree(radian float64) float64 {
+	return radian * 180 / math.Pi
 }

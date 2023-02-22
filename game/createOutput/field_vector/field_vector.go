@@ -9,6 +9,7 @@ type Volley struct {
 	VolleyField []field
 	Aktion      []vector
 }
+
 type field struct {
 	Size float64
 	Name string
