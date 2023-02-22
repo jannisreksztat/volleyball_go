@@ -5,15 +5,15 @@ import (
 )
 
 type Volley struct {
-	FeldSize    float32
+	FeldSize    float64
 	VolleyField []field
 	Aktion      []vector
 }
 type field struct {
-	Size float32
+	Size float64
 	Name string
-	XPos float32
-	YPos float32
+	XPos float64
+	YPos float64
 }
 
 type vector struct {
@@ -34,7 +34,7 @@ var subField = [][]string{
 	{"C", "B"},
 }
 
-func NewVolley(gameData dataframe.DataFrame, size float32, attackTeam string) *Volley {
+func NewVolley(gameData dataframe.DataFrame, size float64, attackTeam string) *Volley {
 	volley := new(Volley)
 	volley.FeldSize = size
 	volley.createFields(attackTeam)
