@@ -15,6 +15,6 @@ func main() {
 	// fmt.Println(data.FilteredData)
 	// data.CreateCSV(outputDir)
 	data.DrawMatch(8, "a", outputDir)
-	output := createOutput.NewOutput(data.FilteredData, 50, "a")
+	output := createOutput.NewOutput(data.FilteredData, 100, "a")
 	output.CreatePDF(outputDir)
 }
