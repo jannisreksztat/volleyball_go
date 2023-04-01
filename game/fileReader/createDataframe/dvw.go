@@ -1,22 +1,25 @@
 package dvw
 
-import "github.com/go-gota/gota/dataframe"
+import (
+	"os"
+
+	"github.com/go-gota/gota/dataframe"
+)
 
 type DVW struct {
 	GameDataFrame dataframe.DataFrame
 	GeneralData   []string
-	FileName      string
 
 	header   []string
 	gameData [][]string
 }
 
-//hier io.reader als übergabe
-func NewDVW(filename string) *DVW {
+// hier io.reader als übergabe
+func NewDVW(file *os.File) *DVW {
 	dvw := new(DVW)
-	dvw.FileName = filename
 	dvw.declareHeader()
-	dvw.readDVW()
+
+	dvw.readDVW(file)
 	dvw.GameDataFrame = dataframe.LoadRecords(dvw.gameData)
 
 	dvw.deleteColumns("undefined")

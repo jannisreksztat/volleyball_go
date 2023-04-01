@@ -1,7 +1,7 @@
 package game
 
 import (
-	dvw "volleyball_go/read_dvw"
+	reader "volleyball_go/game/fileReader"
 
 	"github.com/go-gota/gota/dataframe"
 )
@@ -14,7 +14,7 @@ type Game struct {
 
 func NewGame(filename string) *Game {
 	game := new(Game)
-	dvw := dvw.NewDVW(filename)
+	dvw := reader.ReadDVWFile(filename)
 
 	game.GameData = dvw.GameDataFrame
 	game.GeneralData = dvw.GeneralData
