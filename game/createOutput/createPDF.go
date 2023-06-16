@@ -8,7 +8,7 @@ import (
 )
 
 func (output *Output) CreatePDF(directory string) {
-	var pdfWidth float64 = 210
+	var pdfWidth float64 = 210			//struct an zentraler stelle erstellen (verschiedene Maße?)
 	var pdfHeight float64 = 297
 	var scale float64 = 1
 
